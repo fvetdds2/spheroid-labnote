@@ -101,6 +101,268 @@ EXOSOME_MULTIPLIER_OPTIONS = {
     "×10^11 particles/mL": 100_000_000_000,
 }
 
+MARYX_SOP_VERSION = "1.5"
+MARYX_SOP_UPDATED = "2026-10-07"
+MARYX_SOP_SOURCE = "Mary-X spheroid culture protocol.docx"
+MARYX_SOP_NOTES = """
+**Source and scope:** Spheroid handling and reseeding are adapted from the
+supplied Mary-X spheroid culture protocol. The culture medium and incubation
+duration follow the researcher's clarification: **DMEM with 10% exosome-depleted
+FBS and Antibiotic-Antimycotic (Anti-Anti), incubated for 5 days**. The
+conditioned-medium debris-clearing step is **2,000 × g for 15 minutes at 4 °C**.
+The subsequent EV enrichment and separate intracellular workflow are carried
+forward from the earlier SOP; they are not specified in the culture document.
+Trypsin incubation, vortexing, neutralization, and cell-counting instructions incorporate
+the researcher's subsequent clarifications.
+
+**Culture conditions:** Incubate at **37 °C, 5% CO₂ for 5 days** in the
+reported DMEM-based medium. Record the Anti-Anti product, stock strength,
+added volume, and final concentration; its concentration was not supplied.
+
+**Fraction identity:** Conditioned-medium EVs, EVs trapped between spheroid
+cells, and intracellular vesicles are different sample types. This SOP covers
+conditioned-medium EVs and the earlier separate intracellular preparation.
+The intracellular workflow does not isolate spheroid-trapped extracellular EVs.
+""".strip()
+
+# The screen and TXT download use the same sections so protocol changes stay in sync.
+MARYX_SOP_SECTIONS = [
+    (
+        "Day 0 — Spheroid preparation and 5-day incubation",
+        """
+1. Inspect comparable Mary-X spheroids under the microscope. Record size,
+   compactness, debris, and contamination status. Use healthy, compact spheroids
+   and record the medium formulation, passage, starting material, and viability.
+2. Gently collect spheroids plus medium into a sterile 15 mL conical tube using
+   a wide-bore or cut pipette tip. Avoid breaking the spheroids. Use appropriately
+   sized vessels if the total volume exceeds the tube's working capacity.
+3. Rinse the original dish with **1–2 mL fresh DMEM containing 10%
+   exosome-depleted FBS and Anti-Anti**, gently swirl, and transfer the remaining
+   spheroids into the same collection tube. Use the laboratory's established
+   Anti-Anti concentration and record it.
+4. Centrifuge at **100 × g for 5 minutes at room temperature, with no brake**.
+5. Carefully remove the supernatant, leaving approximately **100–300 µL**
+   above the loose spheroid pellet to avoid losing spheroids.
+6. Perform the PBS wash specified in the source: gently resuspend in
+   **5–10 mL sterile PBS**, then centrifuge at **100 × g for 5 minutes at
+   room temperature, with no brake**. Remove the wash carefully. The source
+   specifies one PBS wash cycle, replacing the earlier generic PBS 2× instruction.
+7. Resuspend in **15 mL fresh DMEM containing 10% exosome-depleted FBS and
+   Anti-Anti**, prewarmed to **37 °C**. Gently flick or pipette **1–3 times**
+   with a wide-bore tip; do not vortex. Use the appropriate culture vessel.
+   The 15 mL starting volume is carried forward from the supplied culture file;
+   record the actual volume used.
+8. Incubate at **37 °C, 5% CO₂ for 5 days**. Record the actual start and end
+   dates/times, medium and supplement lots, Anti-Anti final concentration,
+   spheroid morphology, and viability. Document any medium additions or
+   changes during incubation so the conditioned-medium collection interval
+   can be interpreted correctly.
+""".strip(),
+    ),
+    (
+        "After 5 days — Conditioned-medium harvest and spheroid recovery",
+        """
+1. At the end of the **5-day incubation**, gently collect the spheroid
+   suspension using a wide-bore or cut pipette tip. Avoid disrupting spheroids
+   and use a tube suitable for the collection volume.
+2. Centrifuge at **100 × g for 5 minutes at room temperature, with no brake**.
+3. Carefully transfer the **supernatant** into a separate clean tube for the
+   external EV workflow. Avoid transferring the spheroid pellet. Record the
+   actual recovered conditioned-medium volume; keep the EV sample cold during
+   the subsequent processing steps.
+4. For continued culture, prepare fresh **DMEM with 10% exosome-depleted FBS
+   and Anti-Anti** at the recorded laboratory concentration. Gently resuspend
+   the retained spheroids in **5 mL** of this medium and transfer into a new
+   **T-75 flask containing 10 mL** of the same fresh medium. Rinse the collection
+   tube with **2 mL** of the same medium and add the rinse to the flask.
+5. Incubate at **37 °C, 5% CO₂** and avoid moving the flask for several hours.
+   Record passage/split ratio, spheroid number or approximate density, medium
+   volume, vessel, centrifugation conditions, and post-reseeding morphology.
+
+Keep all fresh recovery medium out of the harvested EV sample. If an
+intracellular preparation is planned, reserve a separate, recorded spheroid
+aliquot before adding recovery medium; that aliquot follows the intracellular
+workflow below instead of the reseeding steps.
+
+The source advises against trypsinizing spheroids unless single-cell
+dissociation is the goal. Record recovery status and the start of each
+subsequent collection cycle separately.
+""".strip(),
+    ),
+    (
+        "External EVs — Medium clarification and small-EV enrichment",
+        """
+Start with the conditioned-medium supernatant saved after the **5-day
+incubation** and **100 × g** spheroid-harvest spin. The following spins process that medium,
+not the intact spheroid pellet.
+
+1. Centrifuge at **300 × g for 10 minutes at 4 °C** to remove residual cells.
+   Transfer the supernatant into a clean tube without disturbing the pellet.
+2. Centrifuge at **2,000 × g for 15 minutes at 4 °C**. Transfer the supernatant
+   into a clean tube without disturbing the debris pellet.
+3. Centrifuge at **10,000 × g for approximately 30 minutes at 4 °C**.
+   Transfer the supernatant carefully. Keep the large-particle/large-EV pellet
+   separate if it is being retained for analysis.
+4. Enrich small EVs using one laboratory-validated method:
+   - **Ultracentrifugation:** approximately **100,000 × g for 70–120 minutes
+     at 4 °C**. Recover the pellet, gently resuspend it in cold PBS, fill the
+     approved ultracentrifuge tube as required, and repeat approximately
+     **100,000 × g for 70–120 minutes at 4 °C** for the wash.
+   - **Size-exclusion chromatography (SEC):** concentrate the clarified medium
+     if required by the validated column workflow; load the sample, collect
+     and identify EV-containing fractions, pool those fractions, and
+     concentrate if needed.
+5. Gently resuspend the final pellet or adjust the pooled SEC preparation to a
+   **recorded final volume**. Label it **Mary-X conditioned-medium EV-enriched
+   preparation** and proceed to characterization.
+
+The **2,000 × g, 15-minute, 4 °C** step replaces the previous 10–20-minute
+range. It does not replace the source's **100 × g** spheroid-handling steps
+or the later enrichment steps. Record the rotor, tube type, fill volume,
+RCF convention (average or maximum), run time, and temperature. The
+ultracentrifugation range remains a starting framework requiring rotor-specific
+validation; follow the rotor and tube manufacturer's operating requirements.
+""".strip(),
+    ),
+    (
+        "Intracellular vesicles — Separate trypsin dissociation workflow",
+        """
+This section retains the earlier intracellular preparation as a separate
+workflow. It is not part of the supplied culture-file procedure. Use an
+allocated spheroid sample and process it independently of conditioned-medium EVs.
+
+1. Collect the spheroid aliquot and wash gently with cold PBS **3 times**,
+   using the laboratory's validated spheroid-recovery conditions. Keep any
+   wash fractions separately if they are needed for interpretation.
+2. Remove PBS and add enough **trypsin-EDTA** to cover the spheroid pellet,
+   using the laboratory's established concentration. Following the
+   researcher-specified procedure, **incubate at 37 °C and vortex every
+   30 minutes**. After each vortexing interval, **check under the microscope
+   for complete spheroid dissociation**. Stop incubation when complete
+   dissociation is confirmed. Record the trypsin concentration, total
+   incubation time, vortex speed and duration, and microscopic observations.
+   The vortex speed, duration per mixing event, and maximum total trypsin
+   exposure time have not been supplied; use the laboratory's established
+   settings and exposure limit.
+3. Once microscopy confirms complete dissociation, promptly neutralize
+   trypsin with **DMEM + 10% exosome-depleted FBS + Antibiotic-Antimycotic
+   (Anti-Anti)**. Record the neutralization medium volume, supplement lots,
+   and Anti-Anti final concentration used.
+4. Collect the dissociated cells at approximately **300–500 × g for
+   5 minutes at 4 °C**. Remove supernatant and wash cells with cold PBS
+   **2–3 times** to reduce residual trypsin and extracellular material.
+5. After neutralization and washing, **count cells using an automated cell
+   counter with trypan blue** before homogenization. Follow the counter's
+   trypan blue staining instructions and record the counter model and stain
+   mixing ratio. Record **total and viable cell concentrations, suspension
+   volume, total and viable cell numbers, and percentage viability**.
+   Normalize starting material across samples using the recorded counts.
+6. Resuspend in ice-cold isotonic homogenization buffer compatible with the
+   downstream assay, with appropriate inhibitors. The earlier buffer example
+   was **250 mM sucrose, 20 mM HEPES, approximately pH 7.4**. Apply a validated
+   controlled mechanical disruption method, such as Dounce homogenization,
+   while keeping the preparation cold.
+7. Process the homogenate using the earlier differential-centrifugation
+   framework: **500–1,000 × g for 10 minutes at 4 °C**, transfer supernatant;
+   **10,000 × g for 20–30 minutes at 4 °C**, transfer supernatant;
+   approximately **100,000 × g for 70–120 minutes at 4 °C**, retain pellet.
+   Gently wash/resuspend in a compatible buffer and repeat the high-speed
+   centrifugation under the validated conditions.
+8. Record the final resuspension volume and label the result **Mary-X
+   intracellular membrane/vesicle-enriched preparation**. Differential
+   centrifugation alone does not establish endosomal origin or distinguish
+   native intracellular vesicles from other membranes generated during
+   cell disruption; use compartment-specific validation for that claim.
+
+Trypsin is used for dissociation, not as an intracellular EV isolation reagent.
+Record exposure consistently because proteolysis can affect protein readouts.
+Do not apply trypsin to the conditioned-medium EV preparation in this workflow.
+""".strip(),
+    ),
+    (
+        "Controls, characterization, normalization, and storage",
+        """
+- Process a **cell-free medium control containing DMEM, 10% exosome-depleted
+  FBS, and Anti-Anti** through the same **5-day incubation** and isolation
+  workflow. Match supplement lots and the Anti-Anti final concentration.
+  Include whole-cell lysate, viability
+  records, and matched processing/storage controls. Retain the post-enrichment
+  supernatant as a soluble-fraction control when appropriate; residual EVs
+  may remain in it.
+- Characterize particles with NTA or an equivalent validated method, imaging
+  such as TEM/cryo-EM, and a panel of EV-associated and contamination markers.
+  Examples carried forward from the earlier SOP include **CD9, CD63, CD81,
+  TSG101, and ALIX**. Interpret marker selection and results for each fraction;
+  intracellular organelle markers have a different meaning in cell-derived
+  fractions than in conditioned-medium preparations.
+- NTA measures particles and does not by itself establish EV identity. Use
+  **EV-enriched preparation** unless stronger subtype/biogenesis evidence is
+  available. Apply MISEV2023 characterization/reporting guidance; it does not
+  validate these specific Mary-X culture or centrifugation settings.
+- Report conditioned-medium volume, final preparation volume, collection
+  interval, viable-cell input or justified spheroid-biomass estimate, and
+  particles/protein using a consistent normalization strategy. Use comparable
+  spheroid ages, sizes, and treatment conditions.
+- Proceed promptly to characterization when possible. Keep preparations cold
+  during short-term processing. For storage, aliquot into low-binding tubes
+  under the laboratory's validated conditions and document freeze-thaw history.
+
+Before comparing groups, review viability, medium-control background, multiple
+characterization readouts, contamination, normalized starting material, and
+matched processing/storage. Define study-specific acceptance criteria before
+collection rather than inventing universal cutoffs.
+
+Reference for EV nomenclature and characterization:
+[Welsh et al., MISEV2023, Journal of Extracellular Vesicles (2024)](https://doi.org/10.1002/jev2.12404).
+""".strip(),
+    ),
+    (
+        "Experiment record",
+        """
+Record the following in the notebook entry and its Notes field:
+
+- Researcher; date; Mary-X identifier/passage; treatment; replicate/set;
+  spheroid number or density, size, morphology, and viability.
+- DMEM formulation and lot; exosome-depleted FBS product, lot, and **10%**
+  final proportion; Anti-Anti product, stock strength, added volume, and final
+  concentration; PBS wash count and volume; **5-day incubation** start/end;
+  actual medium collection interval; any feeding or medium changes;
+  recovered conditioned-medium volume.
+- Each centrifugation's sample fraction, RCF, RCF convention, duration,
+  temperature, rotor, tube type/fill, and brake setting where specified.
+- Trypsin concentration and total incubation time at **37 °C**; **30-minute
+  vortexing intervals**, vortex speed and duration, microscopic observations,
+  and the time complete dissociation was confirmed; neutralization with **DMEM +
+  10% exosome-depleted FBS + Antibiotic-Antimycotic (Anti-Anti)**, including
+  medium volume, supplement lots, and Anti-Anti final concentration;
+  cell wash details for the intracellular arm only.
+- **Automated cell count with trypan blue**: counter model, stain mixing
+  ratio, total/viable cell concentrations, suspension volume, total/viable
+  cell numbers, percentage viability, and normalization method; EV separation
+  method; SEC column/fraction details if used; final preparation volume.
+- Sample fraction and tube label; particle size/concentration, NTA settings
+  and dilution; protein/marker results; storage and freeze-thaw history;
+  deviations and QC disposition.
+
+The existing app calculates total measured particles as concentration × unit
+multiplier × dilution factor × final volume in mL, then normalizes by the
+entered cell counts. A **50 µL** final volume is **0.050 mL**. Apply the NTA
+dilution factor only once; use a factor of 1 if the entered concentration
+has already been corrected for dilution.
+""".strip(),
+    ),
+]
+
+MARYX_SOP_TEXT = (
+    "# Mary-X spheroid culture and EV collection SOP\n\n"
+    f"Version {MARYX_SOP_VERSION} | Updated {MARYX_SOP_UPDATED}\n"
+    f"Culture source: {MARYX_SOP_SOURCE}\n\n"
+    + MARYX_SOP_NOTES
+    + "\n\n"
+    + "\n\n".join(f"## {title}\n\n{body}" for title, body in MARYX_SOP_SECTIONS)
+    + "\n"
+)
+
 st.set_page_config(page_title="Lab Notebook", page_icon="🧫", layout="wide")
 
 
@@ -157,12 +419,7 @@ st.caption(
 )
 
 tab_add, tab_view, tab_presets, tab_sop = st.tabs(
-    [
-        "➕ Add Entry",
-        "📓 Notebook (view / edit)",
-        "⚙️ Manage Presets",
-        "🧪 Mary-X Exosome SOP",
-    ]
+    ["➕ Add Entry", "📓 Notebook (view / edit)", "⚙️ Manage Presets", "🧪 Mary-X Exosome SOP"]
 )
 
 # ------------------------------------------------------------------
@@ -324,7 +581,7 @@ with tab_add:
     lcol, rcol = st.columns(2)
     with lcol:
         tube_label_internal = st.text_input(
-            "Internal / endosomal vesicle — tube label",
+            "Internal / intracellular vesicle — tube label",
             value=f"{suggested_base}_INT",
         )
     with rcol:
@@ -501,24 +758,12 @@ with tab_view:
                 + " · " + chart_df["experiment_setup_date"]
             )
 
-            # Use Streamlit's built-in charting so the app does not require Plotly.
-            chart_plot = chart_df[["entry_label", color_col, metric_col]].copy()
-            chart_plot[metric_col] = pd.to_numeric(chart_plot[metric_col], errors="coerce")
-            chart_plot = chart_plot.dropna(subset=[metric_col])
-
-            if chart_plot.empty:
-                st.info("No valid particle-per-cell values are available for this chart.")
-            else:
-                # Pivot categories into separate series. This preserves the previous
-                # 'Color by' behavior while relying only on pandas + Streamlit.
-                chart_wide = chart_plot.pivot_table(
-                    index="entry_label",
-                    columns=color_col,
-                    values=metric_col,
-                    aggfunc="first",
-                )
-                st.bar_chart(chart_wide, use_container_width=True)
-                st.caption(f"Y-axis: {metric} · grouped by {color_by_label.lower()}")
+            st.bar_chart(
+                chart_df,
+                x="entry_label",
+                y=metric_col,
+                color=color_col,
+            )
 
 # ------------------------------------------------------------------
 # TAB 3 — Manage Presets
@@ -548,254 +793,24 @@ with tab_presets:
                 st.rerun()
         st.markdown("---")
 
-
-
 # ------------------------------------------------------------------
-# TAB 4 — Mary-X Exosome SOP
+# TAB 4 — Mary-X culture and EV collection SOP
 # ------------------------------------------------------------------
 with tab_sop:
-    st.header("🧪 Mary-X spheroid EV collection SOP")
+    st.subheader("Mary-X spheroid culture and EV collection SOP")
     st.caption(
-        "External small-EV collection from conditioned medium and intracellular/endosomal "
-        "vesicle collection after trypsin dissociation of Mary-X spheroids."
+        f"Version {MARYX_SOP_VERSION} · Updated {MARYX_SOP_UPDATED} · "
+        f"Culture source: {MARYX_SOP_SOURCE}"
     )
-
-    st.info(
-        "Terminology: the extracellular preparation is best described as a small extracellular "
-        "vesicle (EV)-enriched fraction unless exosome biogenesis is demonstrated. The intracellular "
-        "preparation is an intracellular/endosomal vesicle-enriched fraction, not released exosomes."
-    )
-
-    sop_text = r"""
-MARY-X SPHEROID EXTRACELLULAR EV AND INTRACELLULAR/ENDOSOMAL VESICLE COLLECTION SOP
-
-SOP No.: EV-MARYX-001
-Version: 1.0
-Application: Mary-X inflammatory breast cancer spheroid cultures
-
-1. PURPOSE
-To collect (A) extracellular small-EV-enriched material released by Mary-X spheroids into conditioned medium and (B) intracellular/endosomal vesicle-enriched material from Mary-X spheroids following trypsin-mediated dissociation and controlled cell disruption.
-
-2. KEY PRINCIPLES
-- Keep extracellular and intracellular fractions separate throughout the workflow.
-- Use EV-depleted serum or a validated short serum-free collection condition.
-- Process an equal volume of unconditioned collection medium as a background control.
-- Record spheroid number/size, viable cell number, collection volume, collection duration, treatment, and viability.
-- Report centrifugation force as x g (RCF), not rpm alone.
-- Trypsin is used to dissociate Mary-X spheroids; it is not the intracellular-vesicle isolation reagent.
-
-3. MATERIALS
-- Mary-X spheroid cultures
-- Appropriate growth/collection medium
-- EV-depleted FBS if serum is required
-- Sterile Ca2+/Mg2+-free PBS
-- Trypsin-EDTA
-- Complete medium or validated trypsin-neutralization reagent
-- Ice-cold isotonic homogenization buffer (example: 250 mM sucrose, 20 mM HEPES, approximately pH 7.4)
-- Protease inhibitor cocktail; phosphatase inhibitors if needed
-- Refrigerated centrifuge and, if used, ultracentrifuge with appropriate rotor
-- Low-protein-binding tubes
-- 0.22-micron filter when appropriate for the selected workflow
-- NTA/ZetaView, TEM/cryo-EM, and immunoblotting capability as available
-
-4. SAMPLE SET
-Prepare, where possible:
-- Mary-X conditioned medium: external EV fraction
-- Mary-X spheroids/cells: intracellular/endosomal vesicle fraction
-- Unconditioned collection medium: process/background control
-- Whole-cell lysate: cellular marker control
-- EV-depleted post-isolation supernatant: soluble/non-EV comparison
-
-PART A — EXTERNAL EV COLLECTION
-
-5. PREPARE SPHEROIDS FOR COLLECTION
-5.1 Grow Mary-X spheroids under validated laboratory culture conditions.
-5.2 Use comparable culture age, spheroid number, spheroid size, treatment condition, and collection volume across groups.
-5.3 Allow spheroids to settle or use gentle low-speed centrifugation. Avoid mechanical disruption.
-5.4 Remove growth medium.
-5.5 Wash spheroids gently with PBS twice to reduce residual serum-derived particles.
-5.6 Add fresh EV-collection medium and document start time/conditions.
-
-6. COLLECT CONDITIONED MEDIUM
-6.1 Transfer conditioned medium without intentionally collecting spheroids.
-6.2 Centrifuge at 300 x g for 10 min at 4 C. Transfer supernatant.
-6.3 Centrifuge at 2,000 x g for 10-20 min at 4 C. Transfer supernatant.
-6.4 Centrifuge at 10,000 x g for approximately 30 min at 4 C. Transfer supernatant carefully.
-6.5 Retain the 10,000 x g pellet separately only if large-EV analysis is planned.
-
-7. SMALL-EV ENRICHMENT
-Option A — Differential ultracentrifugation
-7.1 Transfer clarified conditioned medium to compatible ultracentrifuge tubes and balance according to rotor requirements.
-7.2 Centrifuge at approximately 100,000 x g for 70-120 min at 4 C.
-7.3 Carefully remove supernatant.
-7.4 Gently resuspend the pellet in cold PBS.
-7.5 For improved purity, wash by repeating approximately 100,000 x g for 70-120 min at 4 C.
-7.6 Resuspend the final pellet in a small, recorded volume of sterile PBS or appropriate assay buffer.
-
-Option B — Size-exclusion chromatography (SEC)
-7.1 After the 10,000 x g clarification step, concentrate conditioned medium if required by the validated column workflow.
-7.2 Load the sample onto a validated SEC column.
-7.3 Collect sequential fractions and identify EV-enriched fractions according to laboratory/column validation.
-7.4 Pool EV-enriched fractions and concentrate if required.
-
-PART B — INTRACELLULAR/ENDOSOMAL VESICLE COLLECTION
-
-8. HARVEST MARY-X SPHEROIDS
-8.1 After conditioned-medium removal, collect spheroids into a separate tube.
-8.2 Wash with cold PBS three times to minimize carryover of extracellular EVs.
-
-9. TRYPSIN DISSOCIATION
-9.1 Remove PBS completely.
-9.2 Add the minimum sufficient volume of trypsin-EDTA to cover the spheroid pellet.
-9.3 Incubate under the laboratory's validated Mary-X dissociation conditions while monitoring microscopically.
-9.4 Use gentle pipetting as needed to obtain a single-cell or small-cluster suspension; avoid excessive trituration.
-9.5 Stop trypsinization promptly when adequate dissociation is achieved.
-9.6 Neutralize trypsin immediately with complete medium or a validated neutralizing reagent.
-
-10. REMOVE RESIDUAL TRYPSIN AND EXTRACELLULAR MATERIAL
-10.1 Centrifuge cells at approximately 300-500 x g for 5 min at 4 C.
-10.2 Discard supernatant and resuspend cells in cold PBS.
-10.3 Repeat PBS washing 2-3 times.
-10.4 Record viable and total cell counts and percent viability.
-10.5 Normalize starting material to viable cell number where possible.
-
-11. CONTROLLED CELL DISRUPTION
-11.1 Resuspend washed cells in ice-cold isotonic homogenization buffer containing fresh protease inhibitors.
-11.2 Keep the sample on ice.
-11.3 Disrupt cells using a validated gentle mechanical method such as Dounce homogenization.
-11.4 The goal is plasma-membrane disruption while preserving intracellular membrane-bound vesicles.
-11.5 Avoid aggressive sonication when intact vesicles are required.
-
-12. DIFFERENTIAL CENTRIFUGATION OF THE INTRACELLULAR FRACTION
-12.1 Centrifuge homogenate at approximately 500-1,000 x g for 10 min at 4 C to remove intact cells/nuclei. Transfer supernatant.
-12.2 Centrifuge supernatant at approximately 10,000 x g for 20-30 min at 4 C to remove large organelles/debris. Transfer supernatant.
-12.3 Ultracentrifuge the resulting supernatant at approximately 100,000 x g for 70-120 min at 4 C.
-12.4 Remove supernatant carefully.
-12.5 Gently resuspend the pellet in cold PBS or isotonic buffer.
-12.6 Repeat approximately 100,000 x g for 70-120 min at 4 C as a wash if appropriate.
-12.7 Resuspend the final pellet and label it: Mary-X intracellular/endosomal vesicle-enriched fraction.
-
-13. STORAGE
-- Proceed directly to characterization whenever possible.
-- Keep samples on ice during short-term processing.
-- For longer storage, aliquot into low-protein-binding tubes using the laboratory's validated EV storage temperature.
-- Avoid unnecessary freeze-thaw cycles and keep storage history equivalent across experimental groups.
-
-14. CHARACTERIZATION
-Use complementary methods rather than a single marker.
-Particle analysis: NTA/ZetaView or an equivalent validated method. Record concentration, size distribution, dilution, and instrument settings.
-Morphology: TEM or cryo-EM where available.
-EV-associated proteins: use multiple markers such as CD9, CD63, CD81, TSG101, and ALIX, selected according to the biological question and laboratory validation.
-Assess cellular contamination markers where appropriate. Interpret intracellular fractions differently because organellar markers may legitimately be present.
-
-15. TRYPSIN-SPECIFIC CONTROL
-Because trypsin is a protease, record trypsin concentration, exposure duration, temperature, and neutralization method. Keep these parameters identical among groups. Prolonged exposure can alter membrane proteins and viability. Do not expose the extracellular EV preparation to trypsin unless the experiment specifically requires a protease-accessibility assay.
-
-16. NORMALIZATION
-External EV fraction:
-- particles/mL conditioned medium
-- particles/10^6 viable cells
-- EV-associated protein/10^6 viable cells
-- particles/spheroid when spheroid number is standardized
-
-Intracellular/endosomal fraction:
-- particles/10^6 viable cells
-- vesicle-associated protein/10^6 viable cells
-
-17. QUALITY-CONTROL CHECKLIST
-- Comparable spheroid viability among groups
-- Equivalent starting material or defined normalization
-- Unconditioned-medium control processed in parallel
-- Multiple EV-associated markers assessed
-- Major cellular contamination assessed for extracellular EVs
-- External and intracellular fractions never combined
-- Trypsin conditions documented and consistent
-- Rotor and RCF documented for each centrifugation step
-- Equivalent storage and freeze-thaw history among samples
-
-18. DATA TO RECORD
-Mary-X passage/identifier; treatment; spheroid number; approximate spheroid size; total and viable cell number; percent viability; medium formulation; EV-depleted-serum lot; conditioned-medium volume; collection duration; trypsin concentration and exposure time; centrifuge and rotor; RCF; temperature; final resuspension volume; storage conditions; freeze-thaw cycles; particle concentration; size distribution; protein concentration; EV markers; contamination markers.
-"""
-
-    with st.expander("📌 Purpose, terminology & experimental design", expanded=True):
-        st.markdown(
-            """
-### Purpose
-Collect two **separate** preparations from Mary-X spheroids:
-1. **External small-EV-enriched fraction** from conditioned medium.
-2. **Intracellular/endosomal vesicle-enriched fraction** after trypsin dissociation and controlled cell disruption.
-
-### Core controls
-- Unconditioned collection medium processed in parallel.
-- Whole-cell lysate.
-- Viability measurement at harvest.
-- Matched collection volume, duration, rotor/RCF, and storage conditions.
-            """
-        )
-
-    with st.expander("A — External EV collection from conditioned medium", expanded=True):
-        st.markdown(
-            """
-1. Grow comparable Mary-X spheroids and switch to validated EV-collection medium.
-2. Wash spheroids gently with PBS **2×** before starting the collection period.
-3. Collect conditioned medium without aspirating spheroids.
-4. **300 × g, 10 min, 4 °C** → transfer supernatant.
-5. **2,000 × g, 10–20 min, 4 °C** → transfer supernatant.
-6. **10,000 × g, ~30 min, 4 °C** → transfer supernatant.
-7. Enrich small EVs using either:
-   - **~100,000 × g, 70–120 min, 4 °C**, followed by a PBS wash and repeat ultracentrifugation, or
-   - a validated **size-exclusion chromatography (SEC)** workflow.
-8. Resuspend in a recorded final volume and proceed to characterization.
-            """
-        )
-
-    with st.expander("B — Intracellular/endosomal vesicle collection using trypsin", expanded=True):
-        st.markdown(
-            """
-1. Collect the Mary-X spheroids **after external conditioned medium has been removed**.
-2. Wash spheroids with cold PBS **3×**.
-3. Add the minimum sufficient amount of **trypsin-EDTA** and monitor dissociation microscopically.
-4. Use gentle pipetting; stop as soon as an acceptable single-cell/small-cluster suspension is obtained.
-5. Neutralize trypsin immediately.
-6. Pellet cells at **~300–500 × g for 5 min at 4 °C** and wash with cold PBS **2–3×**.
-7. Count total/viable cells and record viability.
-8. Resuspend cells in ice-cold isotonic homogenization buffer plus protease inhibitors.
-9. Disrupt cells gently (for example, validated Dounce homogenization). Avoid aggressive sonication if intact vesicles are required.
-10. **~500–1,000 × g, 10 min, 4 °C** → remove intact cells/nuclei.
-11. **~10,000 × g, 20–30 min, 4 °C** → remove large organelles/debris.
-12. **~100,000 × g, 70–120 min, 4 °C** → enrich the small intracellular/endosomal vesicle fraction.
-13. Wash and repeat ultracentrifugation if appropriate, then resuspend in a recorded final volume.
-            """
-        )
-
-    with st.expander("🧬 Characterization, normalization & QC"):
-        st.markdown(
-            """
-**Characterization**
-- NTA/ZetaView: concentration and size distribution.
-- TEM/cryo-EM where available.
-- Multiple EV-associated markers such as **CD9, CD63, CD81, TSG101, and ALIX**.
-- Appropriate contamination markers for extracellular preparations.
-
-**Normalization**
-- External: particles/mL conditioned medium, particles/10⁶ viable cells, and optionally particles/spheroid.
-- Intracellular/endosomal: particles/10⁶ viable cells and/or vesicle-associated protein/10⁶ viable cells.
-
-**Trypsin QC**
-Record trypsin concentration, exposure time, temperature, and neutralization method. Keep these parameters identical across groups because prolonged protease exposure can affect viability and surface proteins.
-            """
-        )
-
-    with st.expander("📝 Required experiment record"):
-        st.markdown(
-            """
-Record: Mary-X passage/identifier, treatment, spheroid number and approximate size, total/live cell counts, viability, medium formulation, EV-depleted-serum lot, conditioned-medium volume, collection duration, trypsin conditions, centrifuge/rotor, RCF, temperature, final resuspension volume, storage conditions, freeze-thaw cycles, NTA results, protein concentration, EV markers, and contamination markers.
-            """
-        )
-
+    st.markdown(MARYX_SOP_NOTES)
     st.download_button(
-        "⬇️ Download Mary-X SOP as TXT",
-        data=sop_text.encode("utf-8"),
-        file_name="MaryX_EV_collection_SOP.txt",
+        "⬇️ Download SOP as TXT",
+        data=MARYX_SOP_TEXT.encode("utf-8"),
+        file_name=f"MaryX_culture_and_EV_collection_SOP_v{MARYX_SOP_VERSION.replace('.', '_')}.txt",
         mime="text/plain",
+        key="download_maryx_sop",
     )
+    for section_number, (section_title, section_body) in enumerate(MARYX_SOP_SECTIONS):
+        with st.expander(section_title, expanded=section_number < 3):
+            st.markdown(section_body)
+
