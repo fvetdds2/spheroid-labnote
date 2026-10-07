@@ -17,7 +17,6 @@ import os
 from datetime import date, datetime
 
 import pandas as pd
-import plotly.express as px
 import streamlit as st
 
 # ------------------------------------------------------------------
@@ -502,20 +501,24 @@ with tab_view:
                 + " · " + chart_df["experiment_setup_date"]
             )
 
-            fig = px.bar(
-                chart_df,
-                x="entry_label",
-                y=metric_col,
-                color=color_col,
-                labels={
-                    "entry_label": "Entry",
-                    metric_col: metric,
-                    "cell_line": "Cell line",
-                    "culture_condition": "Culture condition",
-                },
-            )
-            fig.update_layout(xaxis_tickangle=-30, margin=dict(t=10))
-            st.plotly_chart(fig, width="stretch")
+            # Use Streamlit's built-in charting so the app does not require Plotly.
+            chart_plot = chart_df[["entry_label", color_col, metric_col]].copy()
+            chart_plot[metric_col] = pd.to_numeric(chart_plot[metric_col], errors="coerce")
+            chart_plot = chart_plot.dropna(subset=[metric_col])
+
+            if chart_plot.empty:
+                st.info("No valid particle-per-cell values are available for this chart.")
+            else:
+                # Pivot categories into separate series. This preserves the previous
+                # 'Color by' behavior while relying only on pandas + Streamlit.
+                chart_wide = chart_plot.pivot_table(
+                    index="entry_label",
+                    columns=color_col,
+                    values=metric_col,
+                    aggfunc="first",
+                )
+                st.bar_chart(chart_wide, use_container_width=True)
+                st.caption(f"Y-axis: {metric} · grouped by {color_by_label.lower()}")
 
 # ------------------------------------------------------------------
 # TAB 3 — Manage Presets
