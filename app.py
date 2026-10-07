@@ -101,7 +101,7 @@ EXOSOME_MULTIPLIER_OPTIONS = {
     "×10^11 particles/mL": 100_000_000_000,
 }
 
-MARYX_SOP_VERSION = "1.5"
+MARYX_SOP_VERSION = "1.7"
 MARYX_SOP_UPDATED = "2026-10-07"
 MARYX_SOP_SOURCE = "Mary-X spheroid culture protocol.docx"
 MARYX_SOP_NOTES = """
@@ -112,8 +112,8 @@ FBS and Antibiotic-Antimycotic (Anti-Anti), incubated for 5 days**. The
 conditioned-medium debris-clearing step is **2,000 × g for 15 minutes at 4 °C**.
 The subsequent EV enrichment and separate intracellular workflow are carried
 forward from the earlier SOP; they are not specified in the culture document.
-Trypsin incubation, vortexing, neutralization, and cell-counting instructions incorporate
-the researcher's subsequent clarifications.
+Trypsin incubation, vortexing, pipetting, neutralization, and cell-counting
+instructions incorporate the researcher's subsequent clarifications.
 
 **Culture conditions:** Incubate at **37 °C, 5% CO₂ for 5 days** in the
 reported DMEM-based medium. Record the Anti-Anti product, stock strength,
@@ -124,6 +124,105 @@ cells, and intracellular vesicles are different sample types. This SOP covers
 conditioned-medium EVs and the earlier separate intracellular preparation.
 The intracellular workflow does not isolate spheroid-trapped extracellular EVs.
 """.strip()
+
+MARYX_SAMPLE_SUMMARY = """
+## Two samples and storage
+
+| Sample label | Source and preparation | Storage |
+| --- | --- | --- |
+| **1. Internal exosome (INT)** | Reserved spheroid aliquot; trypsin dissociation, neutralization, washing, automated cell counting with trypan blue, then the intracellular preparation described below. | Separate labeled aliquots at **−80 °C**. |
+| **2. External exosomes (EXT)** | Conditioned medium; clarification, EV enrichment, and final resuspension. | Separate labeled aliquots at **−80 °C**. |
+
+These are the researcher's sample labels. In this SOP, the internal sample is
+an intracellular membrane/vesicle-enriched preparation, and the external sample
+is a conditioned-medium EV-enriched preparation. Keep the two samples separate.
+Record the experiment ID, sample type, collection date, aliquot volume, and
+freezer/rack/box/position for each stored tube.
+""".strip()
+
+# Embedded SVG keeps the diagram self-contained without another Python package.
+MARYX_SAMPLE_DIAGRAM_SVG = """<svg xmlns="http://www.w3.org/2000/svg"
+    width="860" height="786" viewBox="0 0 860 786"
+    role="img" aria-labelledby="maryx-title maryx-description">
+  <title id="maryx-title">Mary-X two-sample workflow and storage</title>
+  <desc id="maryx-description">After the five-day Mary-X culture, process the
+    reserved spheroids for sample 1, Internal exosome, and conditioned medium
+    for sample 2, External exosomes. Keep the two preparations in separate
+    labeled aliquots and store both at minus 80 degrees Celsius.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5"
+        orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#53627a"/>
+    </marker>
+  </defs>
+  <rect width="860" height="786" fill="#ffffff"/>
+  <g font-family="Arial, DejaVu Sans, sans-serif" text-anchor="middle" fill="#172b44">
+    <text x="430" y="39" font-size="27" font-weight="700">Mary-X two-sample workflow</text>
+    <text x="430" y="68" font-size="18" fill="#526276">Two separately labeled preparations</text>
+
+    <rect x="125" y="94" width="610" height="94" rx="12"
+        fill="#f2f5f9" stroke="#b8c3d1" stroke-width="1.5"/>
+    <text x="430" y="125" font-size="23" font-weight="700">Mary-X spheroids and conditioned medium</text>
+    <text x="430" y="151" font-size="17">DMEM + 10% exosome-depleted FBS + Anti-Anti</text>
+    <text x="430" y="175" font-size="17">5 days at 37 °C, 5% CO₂</text>
+
+    <path d="M430,188 V212 H215 V235" fill="none" stroke="#53627a"
+        stroke-width="2.5" marker-end="url(#arrow)"/>
+    <path d="M430,212 H645 V235" fill="none" stroke="#53627a"
+        stroke-width="2.5" marker-end="url(#arrow)"/>
+
+    <rect x="35" y="242" width="360" height="88" rx="10"
+        fill="#f1f4ff" stroke="#637bb3" stroke-width="1.5"/>
+    <text x="215" y="276" font-size="23" font-weight="700">Retained spheroids</text>
+    <text x="215" y="305" font-size="17">Reserved aliquot for internal preparation</text>
+
+    <rect x="465" y="242" width="360" height="88" rx="10"
+        fill="#edf8f5" stroke="#318978" stroke-width="1.5"/>
+    <text x="645" y="276" font-size="23" font-weight="700">Conditioned medium</text>
+    <text x="645" y="305" font-size="17">Supernatant for external EV preparation</text>
+
+    <path d="M215,330 V353" fill="none" stroke="#53627a" stroke-width="2.5"
+        marker-end="url(#arrow)"/>
+    <path d="M645,330 V353" fill="none" stroke="#53627a" stroke-width="2.5"
+        marker-end="url(#arrow)"/>
+
+    <rect x="35" y="360" width="360" height="132" rx="10"
+        fill="#ffffff" stroke="#637bb3" stroke-width="1.5"/>
+    <text x="215" y="394" font-size="21" font-weight="700">Trypsin dissociation</text>
+    <text x="215" y="424" font-size="18">Neutralize, wash, and count cells</text>
+    <text x="215" y="452" font-size="18">Intracellular vesicle preparation</text>
+    <text x="215" y="477" font-size="16" fill="#526276">Follow the separate intracellular workflow</text>
+
+    <rect x="465" y="360" width="360" height="132" rx="10"
+        fill="#ffffff" stroke="#318978" stroke-width="1.5"/>
+    <text x="645" y="394" font-size="21" font-weight="700">Clarify conditioned medium</text>
+    <text x="645" y="424" font-size="18">Includes 2,000 × g, 15 min, 4 °C</text>
+    <text x="645" y="452" font-size="18">EV enrichment and resuspension</text>
+    <text x="645" y="477" font-size="16" fill="#526276">Follow the external EV workflow</text>
+
+    <path d="M215,492 V515" fill="none" stroke="#53627a" stroke-width="2.5"
+        marker-end="url(#arrow)"/>
+    <path d="M645,492 V515" fill="none" stroke="#53627a" stroke-width="2.5"
+        marker-end="url(#arrow)"/>
+
+    <rect x="35" y="522" width="360" height="186" rx="12"
+        fill="#eef2ff" stroke="#49669e" stroke-width="2"/>
+    <text x="215" y="562" font-size="25" font-weight="700">1. Internal exosome</text>
+    <text x="215" y="594" font-size="18">INT · separate labeled aliquots</text>
+    <text x="215" y="656" font-size="43" font-weight="700">−80 °C</text>
+    <text x="215" y="689" font-size="17">Storage temperature</text>
+
+    <rect x="465" y="522" width="360" height="186" rx="12"
+        fill="#e7f5ef" stroke="#257564" stroke-width="2"/>
+    <text x="645" y="562" font-size="25" font-weight="700">2. External exosomes</text>
+    <text x="645" y="594" font-size="18">EXT · separate labeled aliquots</text>
+    <text x="645" y="656" font-size="43" font-weight="700">−80 °C</text>
+    <text x="645" y="689" font-size="17">Storage temperature</text>
+
+    <text x="430" y="745" font-size="17">Label each tube with experiment ID, sample type, date, and aliquot volume.</text>
+    <text x="430" y="773" font-size="16" fill="#526276">Record freezer / rack / box / position and freeze–thaw history.</text>
+  </g>
+</svg>"""
 
 # The screen and TXT download use the same sections so protocol changes stay in sync.
 MARYX_SOP_SECTIONS = [
@@ -213,8 +312,10 @@ not the intact spheroid pellet.
      and identify EV-containing fractions, pool those fractions, and
      concentrate if needed.
 5. Gently resuspend the final pellet or adjust the pooled SEC preparation to a
-   **recorded final volume**. Label it **Mary-X conditioned-medium EV-enriched
-   preparation** and proceed to characterization.
+   **recorded final volume**. Use the sample label **2. External exosomes
+   (EXT)** and describe it as a **Mary-X conditioned-medium EV-enriched
+   preparation**. Proceed to characterization; store the designated aliquots
+   separately at **−80 °C** as described below.
 
 The **2,000 × g, 15-minute, 4 °C** step replaces the previous 10–20-minute
 range. It does not replace the source's **100 × g** spheroid-handling steps
@@ -237,10 +338,13 @@ allocated spheroid sample and process it independently of conditioned-medium EVs
 2. Remove PBS and add enough **trypsin-EDTA** to cover the spheroid pellet,
    using the laboratory's established concentration. Following the
    researcher-specified procedure, **incubate at 37 °C and vortex every
-   30 minutes**. After each vortexing interval, **check under the microscope
+   30 minutes**. During trypsin incubation, **gently pipette the suspension
+   up and down multiple times using a 1 mL filtered pipette tip** to help
+   dissociate the spheroids. After mixing, **check under the microscope
    for complete spheroid dissociation**. Stop incubation when complete
    dissociation is confirmed. Record the trypsin concentration, total
-   incubation time, vortex speed and duration, and microscopic observations.
+   incubation time, vortex speed and duration, number of pipetting strokes,
+   and microscopic observations.
    The vortex speed, duration per mixing event, and maximum total trypsin
    exposure time have not been supplied; use the laboratory's established
    settings and exposure limit.
@@ -268,8 +372,10 @@ allocated spheroid sample and process it independently of conditioned-medium EVs
    approximately **100,000 × g for 70–120 minutes at 4 °C**, retain pellet.
    Gently wash/resuspend in a compatible buffer and repeat the high-speed
    centrifugation under the validated conditions.
-8. Record the final resuspension volume and label the result **Mary-X
-   intracellular membrane/vesicle-enriched preparation**. Differential
+8. Record the final resuspension volume and use the sample label **1. Internal
+   exosome (INT)**. Describe the result as a **Mary-X intracellular
+   membrane/vesicle-enriched preparation** and store the designated aliquots
+   separately at **−80 °C**. Differential
    centrifugation alone does not establish endosomal origin or distinguish
    native intracellular vesicles from other membranes generated during
    cell disruption; use compartment-specific validation for that claim.
@@ -304,8 +410,11 @@ Do not apply trypsin to the conditioned-medium EV preparation in this workflow.
   particles/protein using a consistent normalization strategy. Use comparable
   spheroid ages, sizes, and treatment conditions.
 - Proceed promptly to characterization when possible. Keep preparations cold
-  during short-term processing. For storage, aliquot into low-binding tubes
-  under the laboratory's validated conditions and document freeze-thaw history.
+  during short-term processing. Aliquot the final **1. Internal exosome (INT)**
+  and **2. External exosomes (EXT)** samples into separate labeled low-binding
+  tubes and **store both samples at −80 °C**. Record the aliquot volume,
+  date frozen, freezer/rack/box/position, and freeze-thaw history. Keep INT and
+  EXT samples separate and avoid unnecessary repeated freeze-thaw cycles.
 
 Before comparing groups, review viability, medium-control background, multiple
 characterization readouts, contamination, normalized starting material, and
@@ -331,8 +440,10 @@ Record the following in the notebook entry and its Notes field:
 - Each centrifugation's sample fraction, RCF, RCF convention, duration,
   temperature, rotor, tube type/fill, and brake setting where specified.
 - Trypsin concentration and total incubation time at **37 °C**; **30-minute
-  vortexing intervals**, vortex speed and duration, microscopic observations,
-  and the time complete dissociation was confirmed; neutralization with **DMEM +
+  vortexing intervals**, vortex speed and duration, repeated up-and-down
+  pipetting with a **1 mL filtered pipette tip**, number of pipetting strokes,
+  microscopic observations, and the time complete dissociation was confirmed;
+  neutralization with **DMEM +
   10% exosome-depleted FBS + Antibiotic-Antimycotic (Anti-Anti)**, including
   medium volume, supplement lots, and Anti-Anti final concentration;
   cell wash details for the intracellular arm only.
@@ -340,8 +451,10 @@ Record the following in the notebook entry and its Notes field:
   ratio, total/viable cell concentrations, suspension volume, total/viable
   cell numbers, percentage viability, and normalization method; EV separation
   method; SEC column/fraction details if used; final preparation volume.
-- Sample fraction and tube label; particle size/concentration, NTA settings
-  and dilution; protein/marker results; storage and freeze-thaw history;
+- Sample fraction and tube label (**1. Internal exosome / INT** or
+  **2. External exosomes / EXT**); particle size/concentration, NTA settings
+  and dilution; protein/marker results; aliquot volume; date frozen;
+  **−80 °C** storage location (freezer/rack/box/position); freeze-thaw history;
   deviations and QC disposition.
 
 The existing app calculates total measured particles as concentration × unit
@@ -358,6 +471,8 @@ MARYX_SOP_TEXT = (
     f"Version {MARYX_SOP_VERSION} | Updated {MARYX_SOP_UPDATED}\n"
     f"Culture source: {MARYX_SOP_SOURCE}\n\n"
     + MARYX_SOP_NOTES
+    + "\n\n"
+    + MARYX_SAMPLE_SUMMARY
     + "\n\n"
     + "\n\n".join(f"## {title}\n\n{body}" for title, body in MARYX_SOP_SECTIONS)
     + "\n"
@@ -581,13 +696,15 @@ with tab_add:
     lcol, rcol = st.columns(2)
     with lcol:
         tube_label_internal = st.text_input(
-            "Internal / intracellular vesicle — tube label",
+            "1. Internal exosome — tube label",
             value=f"{suggested_base}_INT",
+            help="INT identifies the intracellular membrane/vesicle-enriched sample in this SOP. Store separately at −80 °C.",
         )
     with rcol:
         tube_label_external = st.text_input(
-            "External exosome — tube label",
+            "2. External exosomes — tube label",
             value=f"{suggested_base}_EXT",
+            help="EXT identifies the conditioned-medium EV-enriched sample. Store separately at −80 °C.",
         )
 
     st.markdown("---")
@@ -802,6 +919,12 @@ with tab_sop:
         f"Version {MARYX_SOP_VERSION} · Updated {MARYX_SOP_UPDATED} · "
         f"Culture source: {MARYX_SOP_SOURCE}"
     )
+    st.image(MARYX_SAMPLE_DIAGRAM_SVG, width=860)
+    st.caption(
+        "Sample names follow your labels. Internal = intracellular membrane/vesicle-enriched "
+        "preparation; external = conditioned-medium EV-enriched preparation. "
+        "Store both as separate labeled aliquots at −80 °C."
+    )
     st.markdown(MARYX_SOP_NOTES)
     st.download_button(
         "⬇️ Download SOP as TXT",
@@ -809,6 +932,13 @@ with tab_sop:
         file_name=f"MaryX_culture_and_EV_collection_SOP_v{MARYX_SOP_VERSION.replace('.', '_')}.txt",
         mime="text/plain",
         key="download_maryx_sop",
+    )
+    st.download_button(
+        "⬇️ Download sample diagram as SVG",
+        data=MARYX_SAMPLE_DIAGRAM_SVG.encode("utf-8"),
+        file_name="MaryX_two_sample_workflow.svg",
+        mime="image/svg+xml",
+        key="download_maryx_sample_diagram",
     )
     for section_number, (section_title, section_body) in enumerate(MARYX_SOP_SECTIONS):
         with st.expander(section_title, expanded=section_number < 3):
