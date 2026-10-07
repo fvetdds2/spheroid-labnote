@@ -101,7 +101,7 @@ EXOSOME_MULTIPLIER_OPTIONS = {
     "×10^11 particles/mL": 100_000_000_000,
 }
 
-MARYX_SOP_VERSION = "1.7"
+MARYX_SOP_VERSION = "1.8"
 MARYX_SOP_UPDATED = "2026-10-07"
 MARYX_SOP_SOURCE = "Mary-X spheroid culture protocol.docx"
 MARYX_SOP_NOTES = """
@@ -118,6 +118,16 @@ instructions incorporate the researcher's subsequent clarifications.
 **Culture conditions:** Incubate at **37 °C, 5% CO₂ for 5 days** in the
 reported DMEM-based medium. Record the Anti-Anti product, stock strength,
 added volume, and final concentration; its concentration was not supplied.
+
+**Trypsin percentage:** **___% — to be confirmed.** The trypsin concentration
+has not been supplied. Enter the laboratory's actual trypsin-EDTA percentage
+before using the dissociation instructions.
+
+**Sucrose isolation:** The diagram applies **100,000 × g with 30% sucrose in
+PBS** to the two preparations processed separately. The sucrose concentration
+basis, cushion/gradient arrangement, run duration, EV recovery fraction, and
+subsequent wash/buffer-exchange procedure require confirmation. The **4 °C**
+temperature is carried forward from the existing SOP.
 
 **Fraction identity:** Conditioned-medium EVs, EVs trapped between spheroid
 cells, and intracellular vesicles are different sample types. This SOP covers
@@ -141,88 +151,90 @@ freezer/rack/box/position for each stored tube.
 """.strip()
 
 # Embedded SVG keeps the diagram self-contained without another Python package.
-MARYX_SAMPLE_DIAGRAM_SVG = """<svg xmlns="http://www.w3.org/2000/svg"
-    width="860" height="786" viewBox="0 0 860 786"
-    role="img" aria-labelledby="maryx-title maryx-description">
-  <title id="maryx-title">Mary-X two-sample workflow and storage</title>
-  <desc id="maryx-description">After the five-day Mary-X culture, process the
-    reserved spheroids for sample 1, Internal exosome, and conditioned medium
-    for sample 2, External exosomes. Keep the two preparations in separate
-    labeled aliquots and store both at minus 80 degrees Celsius.</desc>
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5"
-        orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#53627a"/>
-    </marker>
-  </defs>
-  <rect width="860" height="786" fill="#ffffff"/>
-  <g font-family="Arial, DejaVu Sans, sans-serif" text-anchor="middle" fill="#172b44">
-    <text x="430" y="39" font-size="27" font-weight="700">Mary-X two-sample workflow</text>
-    <text x="430" y="68" font-size="18" fill="#526276">Two separately labeled preparations</text>
-
-    <rect x="125" y="94" width="610" height="94" rx="12"
-        fill="#f2f5f9" stroke="#b8c3d1" stroke-width="1.5"/>
-    <text x="430" y="125" font-size="23" font-weight="700">Mary-X spheroids and conditioned medium</text>
-    <text x="430" y="151" font-size="17">DMEM + 10% exosome-depleted FBS + Anti-Anti</text>
-    <text x="430" y="175" font-size="17">5 days at 37 °C, 5% CO₂</text>
-
-    <path d="M430,188 V212 H215 V235" fill="none" stroke="#53627a"
-        stroke-width="2.5" marker-end="url(#arrow)"/>
-    <path d="M430,212 H645 V235" fill="none" stroke="#53627a"
-        stroke-width="2.5" marker-end="url(#arrow)"/>
-
-    <rect x="35" y="242" width="360" height="88" rx="10"
-        fill="#f1f4ff" stroke="#637bb3" stroke-width="1.5"/>
-    <text x="215" y="276" font-size="23" font-weight="700">Retained spheroids</text>
-    <text x="215" y="305" font-size="17">Reserved aliquot for internal preparation</text>
-
-    <rect x="465" y="242" width="360" height="88" rx="10"
-        fill="#edf8f5" stroke="#318978" stroke-width="1.5"/>
-    <text x="645" y="276" font-size="23" font-weight="700">Conditioned medium</text>
-    <text x="645" y="305" font-size="17">Supernatant for external EV preparation</text>
-
-    <path d="M215,330 V353" fill="none" stroke="#53627a" stroke-width="2.5"
-        marker-end="url(#arrow)"/>
-    <path d="M645,330 V353" fill="none" stroke="#53627a" stroke-width="2.5"
-        marker-end="url(#arrow)"/>
-
-    <rect x="35" y="360" width="360" height="132" rx="10"
-        fill="#ffffff" stroke="#637bb3" stroke-width="1.5"/>
-    <text x="215" y="394" font-size="21" font-weight="700">Trypsin dissociation</text>
-    <text x="215" y="424" font-size="18">Neutralize, wash, and count cells</text>
-    <text x="215" y="452" font-size="18">Intracellular vesicle preparation</text>
-    <text x="215" y="477" font-size="16" fill="#526276">Follow the separate intracellular workflow</text>
-
-    <rect x="465" y="360" width="360" height="132" rx="10"
-        fill="#ffffff" stroke="#318978" stroke-width="1.5"/>
-    <text x="645" y="394" font-size="21" font-weight="700">Clarify conditioned medium</text>
-    <text x="645" y="424" font-size="18">Includes 2,000 × g, 15 min, 4 °C</text>
-    <text x="645" y="452" font-size="18">EV enrichment and resuspension</text>
-    <text x="645" y="477" font-size="16" fill="#526276">Follow the external EV workflow</text>
-
-    <path d="M215,492 V515" fill="none" stroke="#53627a" stroke-width="2.5"
-        marker-end="url(#arrow)"/>
-    <path d="M645,492 V515" fill="none" stroke="#53627a" stroke-width="2.5"
-        marker-end="url(#arrow)"/>
-
-    <rect x="35" y="522" width="360" height="186" rx="12"
-        fill="#eef2ff" stroke="#49669e" stroke-width="2"/>
-    <text x="215" y="562" font-size="25" font-weight="700">1. Internal exosome</text>
-    <text x="215" y="594" font-size="18">INT · separate labeled aliquots</text>
-    <text x="215" y="656" font-size="43" font-weight="700">−80 °C</text>
-    <text x="215" y="689" font-size="17">Storage temperature</text>
-
-    <rect x="465" y="522" width="360" height="186" rx="12"
-        fill="#e7f5ef" stroke="#257564" stroke-width="2"/>
-    <text x="645" y="562" font-size="25" font-weight="700">2. External exosomes</text>
-    <text x="645" y="594" font-size="18">EXT · separate labeled aliquots</text>
-    <text x="645" y="656" font-size="43" font-weight="700">−80 °C</text>
-    <text x="645" y="689" font-size="17">Storage temperature</text>
-
-    <text x="430" y="745" font-size="17">Label each tube with experiment ID, sample type, date, and aliquot volume.</text>
-    <text x="430" y="773" font-size="16" fill="#526276">Record freezer / rack / box / position and freeze–thaw history.</text>
-  </g>
-</svg>"""
+MARYX_SAMPLE_DIAGRAM_SVG = """<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1360" viewBox="0 0 1000 1360" role="img" aria-labelledby="maryx-title maryx-description">
+<title id="maryx-title">Mary-X detailed two-sample workflow and storage</title>
+<desc id="maryx-description">The internal branch shows trypsin dissociation at 37 degrees Celsius with the percentage awaiting confirmation, vortexing every 30 minutes, repeated pipetting, microscopy, neutralization, washing, and automated cell counting. The external branch shows 300 times g, then 2000 times g for 15 minutes at 4 degrees Celsius, then 10000 times g for approximately 30 minutes at 4 degrees Celsius, retaining the supernatant after each clarification step. Both separate preparations show isolation at 100000 times g with 30 percent sucrose in PBS; run time, sucrose setup, and fraction recovery require confirmation. Store both samples separately at minus 80 degrees Celsius.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 Z" fill="#53627a"/></marker></defs>
+<rect width="1000" height="1360" fill="#ffffff"/>
+<g font-family="Arial, DejaVu Sans, sans-serif" text-anchor="middle" fill="#172b44">
+<text x="500" y="39" font-size="29" font-weight="700" fill="#172b44">Mary-X detailed two-sample workflow</text>
+<text x="500" y="70" font-size="19" font-weight="400" fill="#526276">Keep the internal and external preparations separate throughout</text>
+<rect x="170" y="95" width="660" height="104" rx="11" fill="#f2f5f9" stroke="#b8c3d1" stroke-width="1.5"/>
+<text x="500" y="128" font-size="25" font-weight="700" fill="#172b44">Mary-X spheroids and conditioned medium</text>
+<text x="500" y="157" font-size="19" font-weight="400" fill="#172b44">DMEM + 10% exosome-depleted FBS + Anti-Anti</text>
+<text x="500" y="185" font-size="19" font-weight="400" fill="#172b44">5 days at 37 °C, 5% CO₂</text>
+<path d="M500,199 V224 H250 V245" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M500,224 H750 V245" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="30" y="252" width="440" height="78" rx="11" fill="#f1f4ff" stroke="#637bb3" stroke-width="1.5"/>
+<text x="250" y="284" font-size="25" font-weight="700" fill="#172b44">Retained spheroids</text>
+<text x="250" y="313" font-size="19" font-weight="400" fill="#172b44">Reserved aliquot; gentle PBS washes ×3</text>
+<rect x="530" y="252" width="440" height="78" rx="11" fill="#edf8f5" stroke="#318978" stroke-width="1.5"/>
+<text x="750" y="284" font-size="25" font-weight="700" fill="#172b44">Conditioned medium</text>
+<text x="750" y="313" font-size="19" font-weight="400" fill="#172b44">Supernatant from spheroid harvest</text>
+<path d="M250,330 V351" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M750,330 V351" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="30" y="358" width="440" height="258" rx="11" fill="#ffffff" stroke="#637bb3" stroke-width="1.5"/>
+<text x="250" y="392" font-size="25" font-weight="700" fill="#172b44">Trypsin dissociation</text>
+<text x="250" y="429" font-size="23" font-weight="700" fill="#875600">Trypsin-EDTA: ___% (confirm)</text>
+<text x="250" y="465" font-size="21" font-weight="700" fill="#172b44">37 °C · vortex every 30 minutes</text>
+<text x="250" y="499" font-size="20" font-weight="400" fill="#172b44">Pipette up and down multiple times</text>
+<text x="250" y="527" font-size="20" font-weight="400" fill="#172b44">with a 1 mL filtered pipette tip</text>
+<text x="250" y="563" font-size="20" font-weight="400" fill="#172b44">Check under the microscope</text>
+<text x="250" y="594" font-size="20" font-weight="700" fill="#172b44">Stop when dissociation is complete</text>
+<path d="M250,616 V639" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="30" y="646" width="440" height="246" rx="11" fill="#ffffff" stroke="#637bb3" stroke-width="1.5"/>
+<text x="250" y="681" font-size="24" font-weight="700" fill="#172b44">Neutralize, wash, and count</text>
+<text x="250" y="714" font-size="20" font-weight="400" fill="#172b44">DMEM + 10% exosome-depleted FBS</text>
+<text x="250" y="741" font-size="20" font-weight="400" fill="#172b44">+ Antibiotic-Antimycotic (Anti-Anti)</text>
+<text x="250" y="776" font-size="21" font-weight="700" fill="#172b44">300–500 × g · 5 min · 4 °C</text>
+<text x="250" y="805" font-size="19" font-weight="400" fill="#172b44">Retain cells; PBS wash 2–3×</text>
+<text x="250" y="839" font-size="20" font-weight="400" fill="#172b44">Automated cell count with trypan blue</text>
+<text x="250" y="870" font-size="18" font-weight="400" fill="#172b44">Record total cells, live cells, and viability (%)</text>
+<path d="M250,892 V915" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="30" y="922" width="440" height="212" rx="11" fill="#ffffff" stroke="#637bb3" stroke-width="1.5"/>
+<text x="250" y="957" font-size="23" font-weight="700" fill="#172b44">Intracellular preparation</text>
+<text x="250" y="991" font-size="20" font-weight="400" fill="#172b44">Controlled cell homogenization</text>
+<text x="250" y="1021" font-size="18" font-weight="400" fill="#172b44">Clarify using the intracellular workflow</text>
+<text x="250" y="1052" font-size="20" font-weight="700" fill="#172b44">100,000 × g · 30% sucrose in PBS</text>
+<text x="250" y="1083" font-size="18" font-weight="400" fill="#875600">Run time and fraction recovery: confirm</text>
+<text x="250" y="1114" font-size="21" font-weight="700" fill="#172b44">Aliquot and label INT</text>
+<rect x="530" y="358" width="440" height="94" rx="11" fill="#ffffff" stroke="#318978" stroke-width="1.5"/>
+<text x="750" y="387" font-size="22" font-weight="700" fill="#172b44">Remove residual intact cells</text>
+<text x="750" y="417" font-size="21" font-weight="700" fill="#172b44">300 × g · 10 min · 4 °C</text>
+<text x="750" y="443" font-size="18" font-weight="400" fill="#172b44">Transfer supernatant</text>
+<path d="M750,452 V475" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="530" y="482" width="440" height="128" rx="11" fill="#ffffff" stroke="#318978" stroke-width="1.5"/>
+<text x="750" y="515" font-size="23" font-weight="700" fill="#172b44">Remove cells and debris</text>
+<text x="750" y="552" font-size="25" font-weight="700" fill="#172b44">2,000 × g · 15 min · 4 °C</text>
+<text x="750" y="587" font-size="19" font-weight="400" fill="#172b44">Transfer supernatant; leave pellet behind</text>
+<path d="M750,610 V633" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="530" y="640" width="440" height="152" rx="11" fill="#ffffff" stroke="#318978" stroke-width="1.5"/>
+<text x="750" y="674" font-size="22" font-weight="700" fill="#172b44">Remove larger debris</text>
+<text x="750" y="714" font-size="25" font-weight="700" fill="#172b44">10,000 × g · ~30 min · 4 °C</text>
+<text x="750" y="748" font-size="19" font-weight="400" fill="#172b44">Transfer supernatant; leave pellet behind</text>
+<text x="750" y="777" font-size="18" font-weight="400" fill="#526276">Larger EVs may also be in this pellet</text>
+<path d="M750,792 V815" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="530" y="822" width="440" height="312" rx="11" fill="#ffffff" stroke="#318978" stroke-width="1.5"/>
+<text x="750" y="858" font-size="25" font-weight="700" fill="#172b44">EV isolation with sucrose</text>
+<text x="750" y="897" font-size="25" font-weight="700" fill="#172b44">100,000 × g · 4 °C</text>
+<text x="750" y="934" font-size="24" font-weight="700" fill="#172b44">30% sucrose in PBS</text>
+<text x="750" y="972" font-size="19" font-weight="400" fill="#875600">Duration and sucrose setup: confirm</text>
+<text x="750" y="1009" font-size="20" font-weight="400" fill="#172b44">Recover the EV-containing fraction</text>
+<text x="750" y="1043" font-size="18" font-weight="400" fill="#875600">Confirm recovery and wash procedure</text>
+<text x="750" y="1083" font-size="19" font-weight="400" fill="#172b44">Record final preparation volume</text>
+<text x="750" y="1114" font-size="21" font-weight="700" fill="#172b44">Aliquot and label EXT</text>
+<path d="M250,1134 V1157" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<path d="M750,1134 V1157" fill="none" stroke="#53627a" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="30" y="1164" width="440" height="145" rx="11" fill="#eef2ff" stroke="#49669e" stroke-width="2"/>
+<text x="250" y="1201" font-size="27" font-weight="700" fill="#172b44">1. Internal exosome</text>
+<text x="250" y="1255" font-size="42" font-weight="700" fill="#172b44">−80 °C</text>
+<text x="250" y="1289" font-size="20" font-weight="400" fill="#172b44">INT · separate labeled aliquots</text>
+<rect x="530" y="1164" width="440" height="145" rx="11" fill="#e7f5ef" stroke="#257564" stroke-width="2"/>
+<text x="750" y="1201" font-size="27" font-weight="700" fill="#172b44">2. External exosomes</text>
+<text x="750" y="1255" font-size="42" font-weight="700" fill="#172b44">−80 °C</text>
+<text x="750" y="1289" font-size="20" font-weight="400" fill="#172b44">EXT · separate labeled aliquots</text>
+<text x="500" y="1343" font-size="19" font-weight="400" fill="#172b44">Label each tube with experiment ID, sample type, date, volume, and freezer location.</text>
+</g></svg>"""
 
 # The screen and TXT download use the same sections so protocol changes stay in sync.
 MARYX_SOP_SECTIONS = [
@@ -302,17 +314,17 @@ not the intact spheroid pellet.
 3. Centrifuge at **10,000 × g for approximately 30 minutes at 4 °C**.
    Transfer the supernatant carefully. Keep the large-particle/large-EV pellet
    separate if it is being retained for analysis.
-4. Enrich small EVs using one laboratory-validated method:
-   - **Ultracentrifugation:** approximately **100,000 × g for 70–120 minutes
-     at 4 °C**. Recover the pellet, gently resuspend it in cold PBS, fill the
-     approved ultracentrifuge tube as required, and repeat approximately
-     **100,000 × g for 70–120 minutes at 4 °C** for the wash.
-   - **Size-exclusion chromatography (SEC):** concentrate the clarified medium
-     if required by the validated column workflow; load the sample, collect
-     and identify EV-containing fractions, pool those fractions, and
-     concentrate if needed.
-5. Gently resuspend the final pellet or adjust the pooled SEC preparation to a
-   **recorded final volume**. Use the sample label **2. External exosomes
+4. Isolate EVs using **100,000 × g with 30% sucrose in PBS** according to
+   the researcher's update. **4 °C** is retained from the existing SOP.
+   Confirm and record the run duration, rotor, tube/fill requirements, sucrose
+   concentration basis and arrangement (for example, cushion or gradient),
+   EV-containing fraction to recover, and subsequent wash/buffer-exchange
+   procedure. These sucrose-method details have not yet been supplied; the
+   earlier generic 70–120-minute direct-pelleting instructions do not establish
+   the run time or recovery fraction for this revised step.
+5. After the confirmed recovery and wash procedure, gently resuspend the
+   final preparation to a **recorded final volume**. Use the sample label
+   **2. External exosomes
    (EXT)** and describe it as a **Mary-X conditioned-medium EV-enriched
    preparation**. Proceed to characterization; store the designated aliquots
    separately at **−80 °C** as described below.
@@ -320,9 +332,9 @@ not the intact spheroid pellet.
 The **2,000 × g, 15-minute, 4 °C** step replaces the previous 10–20-minute
 range. It does not replace the source's **100 × g** spheroid-handling steps
 or the later enrichment steps. Record the rotor, tube type, fill volume,
-RCF convention (average or maximum), run time, and temperature. The
-ultracentrifugation range remains a starting framework requiring rotor-specific
-validation; follow the rotor and tube manufacturer's operating requirements.
+RCF convention (average or maximum), run time, and temperature. The sucrose
+ultracentrifugation settings require rotor-specific confirmation; follow the
+rotor and tube manufacturer's operating requirements.
 """.strip(),
     ),
     (
@@ -335,8 +347,9 @@ allocated spheroid sample and process it independently of conditioned-medium EVs
 1. Collect the spheroid aliquot and wash gently with cold PBS **3 times**,
    using the laboratory's validated spheroid-recovery conditions. Keep any
    wash fractions separately if they are needed for interpretation.
-2. Remove PBS and add enough **trypsin-EDTA** to cover the spheroid pellet,
-   using the laboratory's established concentration. Following the
+2. Remove PBS and add enough **trypsin-EDTA** to cover the spheroid pellet.
+   Record the trypsin concentration as **___% (to be confirmed)** using the
+   laboratory's actual reagent percentage. Following the
    researcher-specified procedure, **incubate at 37 °C and vortex every
    30 minutes**. During trypsin incubation, **gently pipette the suspension
    up and down multiple times using a 1 mL filtered pipette tip** to help
@@ -368,10 +381,12 @@ allocated spheroid sample and process it independently of conditioned-medium EVs
    while keeping the preparation cold.
 7. Process the homogenate using the earlier differential-centrifugation
    framework: **500–1,000 × g for 10 minutes at 4 °C**, transfer supernatant;
-   **10,000 × g for 20–30 minutes at 4 °C**, transfer supernatant;
-   approximately **100,000 × g for 70–120 minutes at 4 °C**, retain pellet.
-   Gently wash/resuspend in a compatible buffer and repeat the high-speed
-   centrifugation under the validated conditions.
+   **10,000 × g for 20–30 minutes at 4 °C**, transfer supernatant.
+   For the final isolation, this revision applies the researcher's
+   **100,000 × g with 30% sucrose in PBS** update, keeping the intracellular
+   sample separate. **4 °C** is carried forward from the existing SOP.
+   Confirm the sucrose setup, run time, EV-containing recovery fraction, and
+   wash/buffer-exchange procedure before applying this revised isolation step.
 8. Record the final resuspension volume and use the sample label **1. Internal
    exosome (INT)**. Describe the result as a **Mary-X intracellular
    membrane/vesicle-enriched preparation** and store the designated aliquots
@@ -439,6 +454,9 @@ Record the following in the notebook entry and its Notes field:
   recovered conditioned-medium volume.
 - Each centrifugation's sample fraction, RCF, RCF convention, duration,
   temperature, rotor, tube type/fill, and brake setting where specified.
+- **100,000 × g sucrose isolation:** 30% sucrose in PBS; concentration basis;
+  cushion/gradient or other arrangement; sucrose and sample volumes; run time;
+  fraction recovered; and wash/buffer-exchange details for each sample.
 - Trypsin concentration and total incubation time at **37 °C**; **30-minute
   vortexing intervals**, vortex speed and duration, repeated up-and-down
   pipetting with a **1 mL filtered pipette tip**, number of pipetting strokes,
@@ -919,7 +937,7 @@ with tab_sop:
         f"Version {MARYX_SOP_VERSION} · Updated {MARYX_SOP_UPDATED} · "
         f"Culture source: {MARYX_SOP_SOURCE}"
     )
-    st.image(MARYX_SAMPLE_DIAGRAM_SVG, width=860)
+    st.image(MARYX_SAMPLE_DIAGRAM_SVG, width=1000)
     st.caption(
         "Sample names follow your labels. Internal = intracellular membrane/vesicle-enriched "
         "preparation; external = conditioned-medium EV-enriched preparation. "
